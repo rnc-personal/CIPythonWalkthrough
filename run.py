@@ -33,6 +33,8 @@ def get_sales_data():
             print("Data is valid!")
             break
 
+    return sales_data
+
 def validate_data(values):
     """
     Tries to convert all the strings vlaues into ints.
@@ -49,5 +51,15 @@ def validate_data(values):
 
     return True
 
-get_sales_data()
+def update_sales_worksheet(data):
+    """
+    Updates the sales worksheet in GDrive. Adds new row with the proided data
+    """
+    print("Updating sales sheet...\n")
+    sales_worksheet = SHEET.worksheet("sales")
+    sales_worksheet.append_row(data)
+    print("sales worksheet updated succesfully...\n")
 
+data = get_sales_data()
+sales_data = [int(num) for num in data]
+update_sales_worksheet(sales_data)
