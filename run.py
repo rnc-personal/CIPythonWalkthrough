@@ -86,6 +86,19 @@ def get_last_5_entries_sales():
 
     return columns
 
+def calculate_stock_data(data):
+    """ works out avg stock changes """
+    print("Calcualting stock stats")
+    new_stock_data = []
+
+    for col in data:
+        int_column = [int(num) for num in col]
+        average = sum(int_column) / len(int_column) 
+        stock_num = average * 1.1
+        new_stock_data.append(round(stock_num))
+
+    return new_stock_data
+
 def main():
     """
     Run all program functions
@@ -94,11 +107,14 @@ def main():
     sales_data = [int(num) for num in data]
     update_worksheet(sales_data, "sales")
     new_surplus_data = calculate_surplus_data(sales_data)
-    update_worksheet(new_surplus_data,"surplus")
+    update_worksheet(new_surplus_data, "surplus")
+    sales_columns = get_last_5_entries_sales()
+    stock_data = calculate_stock_data(sales_columns)
+    print(stock_data)
+    update_worksheet(stock_data, "stock")
 
 
 print("Welcome to Love sandiwches automation tool")
-# main()
-sales_columns = get_last_5_entries_sales()
+main()
 
 
