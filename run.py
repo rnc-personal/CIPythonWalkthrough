@@ -75,6 +75,17 @@ def calculate_surplus_data(sales_row):
     
     return new_surplus_data
 
+def get_last_5_entries_sales():
+    """works out the average"""
+    sales = SHEET.worksheet("sales")
+
+    columns = []
+    for c in range(1, 7):
+        col_val = sales.col_values(c)
+        columns.append(col_val[-5:])
+
+    return columns
+
 def main():
     """
     Run all program functions
@@ -87,4 +98,7 @@ def main():
 
 
 print("Welcome to Love sandiwches automation tool")
-main()
+# main()
+sales_columns = get_last_5_entries_sales()
+
+
