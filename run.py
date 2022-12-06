@@ -116,5 +116,3 @@ def main():
 
 print("Welcome to Love sandiwches automation tool")
 main()
-
-
